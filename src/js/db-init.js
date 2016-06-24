@@ -1,7 +1,7 @@
 // Create the database
 var db;
 var fs = require("fs");
-var SQL = require('./js/sql.js');
+var SQL = require('./src/js/vendor/sql.js');
 try {
   var filebuffer = fs.readFileSync('userdata.sqlite');
   db = new SQL.Database(filebuffer);

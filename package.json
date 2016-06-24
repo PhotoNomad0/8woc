@@ -22,10 +22,17 @@
   },
   "homepage": "https://github.com/WycliffeAssociates/8woc#readme",
   "devDependencies": {
+    "browserify": "^13.0.1",
+    "del": "^2.2.1",
     "eslint": "^2.13.1",
-    "eslint-config-google": "^0.6.0"
+    "eslint-config-google": "^0.6.0",
+    "gulp": "^3.9.1",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.3.0",
     "bootstrap": "^3.3.6",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
