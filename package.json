@@ -35,13 +35,21 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+<<<<<<< HEAD
     "event-emitter": "^0.3.4",
     "fs": "0.0.2",
     "fs-extra": "^0.30.0",
     "marked": "^0.3.5",
+=======
+>>>>>>> fa44cb182211752d4be57af1ea9d762fc1be4ac9
     "react": "^15.1.0",
+    "react-bootstrap": "^0.29.5",
     "react-dom": "^15.1.0",
     "react-dropzone": "^3.5.1",
+<<<<<<< HEAD
     "sql.js": "^0.3.2"
+=======
+    "react-expandable-nav": "^0.1.19"
+>>>>>>> fa44cb182211752d4be57af1ea9d762fc1be4ac9
   }
 }
