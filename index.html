@@ -4,19 +4,19 @@
     <meta charset="utf-8">
     <title></title>
   </head>
-
-  <body>
-
+<body>
+    <div id="content"></div>
+    <link rel="stylesheet" href="css/bootstrap.css">
     <script src="js/react.js"></script>
-    <script src="js/react-dom.js"></script>
     <script src="js/browser.min.js"></script>
     <script src="js/db-init.js"></script>
     <script type="text/babel" src="js/fileupload.js"></script>
+    <script src="js/react-dom.js"></script>
     <script>
     var parser = require('./js/usfm-parse.js');
+  // Or var ExpandableNavContainer = ExpandableNav.ExpandableNavContainer;
     var test_file = require('fs').readFileSync('./js/usfm-test.sfm').toString();
-    console.log(parser(test_file);
     </script>
-    <div id="content"></div>
+    <script type="text/babel" src="root1.js"></script>
   </body>
 </html>
