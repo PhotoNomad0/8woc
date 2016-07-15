@@ -21,6 +21,7 @@
   const NextButton = require('../components/core/NextButton');
   const SwitchCheckModuleDropdown = require('../components/core/SwitchCheckModuleDropdown');
   const TranslationAcademyDisplay = require('../components/TranslationAcademyDisplay');
+  const CheckStore = require('../stores/CheckStore');
 
   var App = {
     init: function() {
@@ -44,7 +45,7 @@
 
                 <SwitchCheckModuleDropdown />
                 {/* <PhraseModuleView /> OR <LexicalModuleView /> */}
-                <TranslationAcademyDisplay sectionName={"figs_you"} />
+                <TranslationAcademyDisplay />
                 <NextButton style={{float: 'right'}} />
               </Col>
             </Row>

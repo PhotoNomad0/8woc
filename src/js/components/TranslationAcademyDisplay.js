@@ -8,7 +8,9 @@ const Button = require('react-bootstrap/lib/Button.js');
 const TranslationAcademyScraper = require('./TranslationAcademyScraper.js');
 const EventEmitter = require('events').EventEmitter;
 
-const TranslationAcademyDisplay = React.createClass({
+const AbstractCheckModule = require('../AbstractCheckModule');
+
+const TranslationAcademyDisplay extends AbstractCheckModule{
 // this makes fields start off empty so they can be filled eventually
   sectionList: null,
 
@@ -16,21 +18,26 @@ const TranslationAcademyDisplay = React.createClass({
 
   tAHtmlScraper: null,
 // gets the initial states of the fields so that when they are toggled they can be displayed
-  getInitialState: function() {
+  constructor(){
+    super();
+
+    this.getAndDisplaySection = this.getAndDisplaySection.bind(this);
+    this.updateText = this.updateText.bind(this);
+    this.displaySection = this.displaySection.bind(this);
+    this.setCurrentMarkdown = this.setCurrentMarkdown.bind(this);
+  }
+
+  componentWillMount() {
     this.getAndDisplaySection();
-    return {
+    this.setState({
       toggleDisplay: false,
       currentSection: null,
       markdownToggle: false,
       value: ''
-    };
-  },
+    });
+  }
 
-  componentWillMount: function() {
-    this.getAndDisplaySection();
-  },
-
-  getAndDisplaySection: function() {
+  getAndDisplaySection() {
     var _this = this;
 // create new instance of the scraper
 /**
@@ -52,11 +59,7 @@ const TranslationAcademyDisplay = React.createClass({
     this.tAHtmlScraper = new TranslationAcademyScraper();
 // Get the list of sections in tA , undefined because i want the default url, when done it calls funtion set list
     this.tAHtmlScraper.getTranslationAcademySectionList(undefined, setList);
-  },
-
-  updateText: function(e) {
-    this.setState({value: this.state.value});
-  },
+  }
 
   render: function() {
     var _this = this;
@@ -97,6 +100,6 @@ const TranslationAcademyDisplay = React.createClass({
     });
     this.forceUpdate();
   }
-});
+}
 
 module.exports = TranslationAcademyDisplay;
