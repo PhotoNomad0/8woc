@@ -8,21 +8,20 @@ const Button = require('react-bootstrap/lib/Button.js');
 const TranslationAcademyScraper = require('./TranslationAcademyScraper.js');
 const EventEmitter = require('events').EventEmitter;
 
-const AbstractCheckModule = require('../AbstractCheckModule');
+const AbstractCheckModule = require('../components/modules/AbstractCheckModule');
 
-const TranslationAcademyDisplay extends AbstractCheckModule{
+class TranslationAcademyDisplay extends AbstractCheckModule{
 // this makes fields start off empty so they can be filled eventually
-  sectionList: null,
 
-  currentMarkdown: null,
-
-  tAHtmlScraper: null,
 // gets the initial states of the fields so that when they are toggled they can be displayed
   constructor(){
     super();
 
+    this.sectionList = null;
+    this.currentMarkdown = null;
+    this.tAHtmlScraper = null;
+
     this.getAndDisplaySection = this.getAndDisplaySection.bind(this);
-    this.updateText = this.updateText.bind(this);
     this.displaySection = this.displaySection.bind(this);
     this.setCurrentMarkdown = this.setCurrentMarkdown.bind(this);
   }
@@ -89,7 +88,19 @@ const TranslationAcademyDisplay extends AbstractCheckModule{
     this.forceUpdate();
   }
 
-  
+
+  render() {
+    var _this = this;
+    return (
+      <Well>
+        <div style={{overflowY: "scroll"}}>
+          <h1> Translation Academy</h1>
+          {_this.currentMarkdown}
+        </div>
+      </Well>
+    );
+  }
+
 }
 
 module.exports = TranslationAcademyDisplay;
