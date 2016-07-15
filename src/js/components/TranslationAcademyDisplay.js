@@ -60,23 +60,11 @@ const TranslationAcademyDisplay extends AbstractCheckModule{
 // Get the list of sections in tA , undefined because i want the default url, when done it calls funtion set list
     this.tAHtmlScraper.getTranslationAcademySectionList(undefined, setList);
   }
-
-  render: function() {
-    var _this = this;
-    return (
-      <Well>
-        <div style={{overflowY: "scroll"}}>
-          <h1> Translation Academy</h1>
-          {_this.currentMarkdown}
-        </div>
-      </Well>
-    );
-  },
 /**
 * Sets the attribute 'currentMarkdown' from the file returned from
 * the htmlscraper
 */
-  displaySection: function(sectionName) {
+  displaySection(sectionName) {
     this.setState({
       currentSection: sectionName
     });
@@ -91,15 +79,17 @@ const TranslationAcademyDisplay extends AbstractCheckModule{
         );
       }
     );
-  },
+  }
 
-  setCurrentMarkdown: function(markdownComponent) {
+  setCurrentMarkdown(markdownComponent) {
     this.currentMarkdown = markdownComponent;
     this.setState({
       markdownToggle: !this.state.markdownToggle
     });
     this.forceUpdate();
   }
+
+  
 }
 
 module.exports = TranslationAcademyDisplay;
