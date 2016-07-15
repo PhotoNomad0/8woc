@@ -11,6 +11,7 @@ var CheckConsts = require("../actions/CheckActionConsts.js");
 var FileModule = require("../components/core/FileModule.js");
 var utils = require("../utils.js");
 var Fetcher = require('../components/modules/phrase_check_module/FetchData');
+var json = require('./check_data.json');
 
 var CHANGE_EVENT = 'change';
 
@@ -21,7 +22,7 @@ class CheckStore extends EventEmitter {
     this.groupIndex = 0;
     this.checkIndex = 0;
 
-    this.groups = [];
+    this.groups = json;
 
     // -1 means no checkCategory is selected
     this.checkCategoryId = -1;

@@ -20,6 +20,7 @@
   const Col = require('react-bootstrap/lib/Col.js');
   const NextButton = require('../components/core/NextButton');
   const SwitchCheckModuleDropdown = require('../components/core/SwitchCheckModuleDropdown');
+  const TranslationAcademyDisplay = require('../components/TranslationAcademyDisplay');
 
   var App = {
     init: function() {
@@ -43,6 +44,7 @@
 
                 <SwitchCheckModuleDropdown />
                 {/* <PhraseModuleView /> OR <LexicalModuleView /> */}
+                <TranslationAcademyDisplay sectionName={"figs_you"} />
                 <NextButton style={{float: 'right'}} />
               </Col>
             </Row>
