@@ -44,8 +44,7 @@
                 <TPane />
 
                 <SwitchCheckModuleDropdown />
-                {/* <PhraseModuleView /> OR <LexicalModuleView /> */}
-                <TranslationAcademyDisplay />
+                <PhraseModuleView />
                 <NextButton style={{float: 'right'}} />
               </Col>
             </Row>

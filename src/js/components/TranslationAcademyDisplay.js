@@ -11,9 +11,7 @@ const EventEmitter = require('events').EventEmitter;
 const AbstractCheckModule = require('../components/modules/AbstractCheckModule');
 
 class TranslationAcademyDisplay extends AbstractCheckModule{
-// this makes fields start off empty so they can be filled eventually
 
-// gets the initial states of the fields so that when they are toggled they can be displayed
   constructor(){
     super();
 
@@ -29,65 +27,29 @@ class TranslationAcademyDisplay extends AbstractCheckModule{
   componentWillMount() {
     this.getAndDisplaySection();
     this.setState({
-      toggleDisplay: false,
-      currentSection: null,
-      markdownToggle: false,
-      value: ''
+      tAScraper: null;
     });
   }
 
   getAndDisplaySection() {
-    var _this = this;
-// create new instance of the scraper
-/**
-* This callback will fire once the data has been retrieved from the internet
-* 'data' contains the list of words
-*/
-    function setList(data) {
-// set our list to the data that was retrieved, when done it calls display section
-      _this.sectionList = data;
-// everytime the state changes React re-renders the component so the display changes
-      _this.setState({
-
-        toggleDisplay: !_this.state.toggleDisplay
-      });
-// passing display section as a prop
-      _this.displaySection(_this.props.sectionName);
-    }
 // creates a new instance because its a class and classes need objects
-    this.tAHtmlScraper = new TranslationAcademyScraper();
+    tAHtmlScraper = new TranslationAcademyScraper();
 // Get the list of sections in tA , undefined because i want the default url, when done it calls funtion set list
-    this.tAHtmlScraper.getTranslationAcademySectionList(undefined, setList);
+    this.tAHtmlScraper.getTranslationAcademySectionList(undefined, (sectionList) => {this.displaySection()});
   }
 /**
 * Sets the attribute 'currentMarkdown' from the file returned from
 * the htmlscraper
 */
   displaySection(sectionName) {
-    this.setState({
-      currentSection: sectionName
-    });
-    var rawMarkdown = null;
-    var _this = this;
+    var markdown;
     this.tAHtmlScraper.getSection(sectionName + '.md',
-      function(file) { // assign callback
-        rawMarkdown = file;
-        var markDownToDisplay = rawMarkdown.split("---")[2];
-        _this.setCurrentMarkdown(
-          <Markdown source={markDownToDisplay}/>
-        );
+      function(file) {
+          markdown = <Markdown source={file.split("---")[2]}/>
       }
     );
+    return markdown;
   }
-
-  setCurrentMarkdown(markdownComponent) {
-    this.currentMarkdown = markdownComponent;
-    this.setState({
-      markdownToggle: !this.state.markdownToggle
-    });
-    this.forceUpdate();
-  }
-
 
   render() {
     var _this = this;
@@ -95,7 +57,7 @@ class TranslationAcademyDisplay extends AbstractCheckModule{
       <Well>
         <div style={{overflowY: "scroll"}}>
           <h1> Translation Academy</h1>
-          {_this.currentMarkdown}
+          {this.displaySection(this.props.sectionName)}
         </div>
       </Well>
     );
