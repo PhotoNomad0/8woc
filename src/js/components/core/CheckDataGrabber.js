@@ -50,7 +50,7 @@ var CheckDataGrabber = {
         //CoreStore.sendViews(views);
         //var View = require(path + '/View');
         //this.saveCheckStoreToDisk();
-        CoreActions.sendProgressForKey("");
+        CoreActions.sendProgressForKey(0);
       }
     } else {
       return;
@@ -61,8 +61,9 @@ var CheckDataGrabber = {
   },
   getDataFromCheck: function(path) {
     var DataFetcher = require(path + '/FetchData');
-    //api.saveModule(currentCheckName, path + '/View');
-    DataFetcher(book, this.Progress.bind(this), this.onComplete.bind(this));
+    var viewObj = require(path + '/View');
+    api.saveModule(viewObj.name, viewObj.view);
+    DataFetcher({bookAbbr: book}, this.Progress.bind(this), this.onComplete.bind(this));
   }
 };
 module.exports = CheckDataGrabber;

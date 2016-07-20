@@ -11,7 +11,6 @@ const Checkbox = require('react-bootstrap/lib/Checkbox.js');
 const CoreStore = require('../../stores/CoreStore.js');
 const CheckStore = require('../.././stores/CheckStore');
 const project = require('./CreateNewProject');
-const manifest = require(window.__base + 'test_files/Import From TS/manifest');
 const CoreActions = require('../../actions/CoreActions.js');
 const CheckDataGrabber = require('./CheckDataGrabber');
 const FileModule = require('./FileModule');
@@ -30,8 +29,7 @@ const ProjectModal = React.createClass({
       doneText:"Create",
       modalValue:"Create",
       loadedChecks:[],
-      FetchDataArray:[],
-      progress: 0      //FetchDataArray of checkmodules
+      FetchDataArray:[]    //FetchDataArray of checkmodules
     };
   },
   componentWillMount: function() {
@@ -73,7 +71,6 @@ const ProjectModal = React.createClass({
       projectname: e.target.value
     });
     if (e.charCode == ENTER) {
-      project.createProject(manifest, this.state.projectname);
     }
   },
   beautifyString: function(check) {
@@ -194,7 +191,7 @@ const ProjectModal = React.createClass({
         }
       },
       makePathForChecks: function(check) {
-        var path = window.__base + 'src/js/components/modules/' + check;
+        var path = window.__base + 'modules/' + check;
         return path;
       },
 
