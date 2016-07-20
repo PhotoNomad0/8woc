@@ -62,15 +62,10 @@ const ProjectModal = React.createClass({
     }
   },
   close: function() {
-    CheckStore.getNameSpaces();
+    //CheckStore.getNameSpaces();
     CoreActions.showCreateProject("");
     this.setState({
       showModal: false
-    });
-  },
-  setProgress: function(e){
-    this.setState({
-      progress: e
     });
   },
   setProjectName: function (e) {
@@ -191,6 +186,11 @@ const ProjectModal = React.createClass({
       else if (modalBody == "Create") {
         return (<CreateProjectForm modalTitle={this.state.modalTitle} ref={this.state.modalValue} controlLabelTitle={this.state.controlLabelTitle}
           placeHolderText={this.state.placeHolderText} setProjectName={this.setProjectName}/>)
+        }
+        else if (modalBody == "Languages") {
+          return(
+            <LanguagesForm />
+          )
         }
       },
       makePathForChecks: function(check) {

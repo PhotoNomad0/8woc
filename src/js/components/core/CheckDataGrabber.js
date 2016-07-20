@@ -48,15 +48,16 @@ var CheckDataGrabber = {
       this.saveNextModule();
       if (gotFetch.length == 0) {
         //CoreStore.sendViews(views);
-        var View = require(path + '/View');
+        //var View = require(path + '/View');
         //this.saveCheckStoreToDisk();
+        CoreActions.sendProgressForKey("");
       }
     } else {
       return;
     }
   },
   Progress: function(data) {
-
+    CoreActions.sendProgressForKey([currentCheckName, data]);
   },
   getDataFromCheck: function(path) {
     var DataFetcher = require(path + '/FetchData');
