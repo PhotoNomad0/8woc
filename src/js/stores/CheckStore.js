@@ -204,9 +204,7 @@ class CheckStore extends EventEmitter {
     }
     if (action.type in this.actionCallbacks) {
       for (var actionCallback of this.actionCallbacks[action.type]) {
-      /*  console.log('StoreData');
-        console.dir(this.storeData);
-        */
+
         actionCallback(this.storeData[action.field], action);
       }
     }
