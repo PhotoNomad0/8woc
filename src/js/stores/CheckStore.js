@@ -84,6 +84,13 @@ class CheckStore extends EventEmitter {
     return null;
   }
 
+  getNameSpaces(){
+    var namespaces = [];
+    for (var element in this.storeData) {
+      namespaces.push(element);
+    }
+    return namespaces;
+  }
   /**
    * @description - Retrieves the object behind the given field within CheckStore's data
    * object and saves to the path

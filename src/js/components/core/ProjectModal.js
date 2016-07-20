@@ -9,12 +9,14 @@ const ButtonGroup = require('react-bootstrap/lib/ButtonGroup.js');
 const ButtonToolbar = require('react-bootstrap/lib/ButtonToolbar.js');
 const Checkbox = require('react-bootstrap/lib/Checkbox.js');
 const CoreStore = require('../../stores/CoreStore.js');
+const CheckStore = require('../.././stores/CheckStore');
 const project = require('./CreateNewProject');
 const manifest = require(window.__base + 'test_files/Import From TS/manifest');
 const CoreActions = require('../../actions/CoreActions.js');
 const CheckDataGrabber = require('./CheckDataGrabber');
 const FileModule = require('./FileModule');
 const {dialog} = window.electron.remote;
+const Loader = require('./Loader');
 const ENTER = 13;
 
 const ProjectModal = React.createClass({
@@ -28,7 +30,8 @@ const ProjectModal = React.createClass({
       doneText:"Create",
       modalValue:"Create",
       loadedChecks:[],
-      FetchDataArray:[]      //FetchDataArray of checkmodules
+      FetchDataArray:[],
+      progress: 0      //FetchDataArray of checkmodules
     };
   },
   componentWillMount: function() {
@@ -42,21 +45,32 @@ const ProjectModal = React.createClass({
         showModal: true,
         modalValue: modal,
         modalTitle:"Create Project",
-        doneText:"Create"
+        doneText:"Next"
       });
     } else if(modal === "Check") {
       this.setState({
         showModal: true,
         modalValue: modal,
-        modalTitle:"Select Modules To Load In Project",
-        doneText:"Finish"
+        modalTitle:"Select Modules To Load In Project"
       });
+    }
+    else if (modal == "Languages") {
+      this.setState({
+        modalValue: modal,
+        modalTitle:"Select Book"
+      })
     }
   },
   close: function() {
+    CheckStore.getNameSpaces();
     CoreActions.showCreateProject("");
     this.setState({
       showModal: false
+    });
+  },
+  setProgress: function(e){
+    this.setState({
+      progress: e
     });
   },
   setProjectName: function (e) {
@@ -106,9 +120,8 @@ const ProjectModal = React.createClass({
     else if (this.state.modalValue == "Create") {
       CoreActions.showCreateProject("Check");
     }
-    else if (this.state.modalValue == "Content") {
-      CoreActions.showCreateProject("Content");
-      
+    else if (this.state.modalValue == "Languages") {
+      CoreActions.showCreateProject("Languages");
     }
   },
   isModule: function(filepath, file){

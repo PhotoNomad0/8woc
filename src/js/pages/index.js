@@ -10,6 +10,7 @@
   const {Menu} = remote;
   const MenuBar = require('../components/core/MenuBar');
 
+
   var App = {
     init: function() {
       var menu = Menu.buildFromTemplate(MenuBar.template);

@@ -14,6 +14,7 @@ const RootStyles = require('./RootStyle');
 const Grid = require('react-bootstrap/lib/Grid.js');
 const Row = require('react-bootstrap/lib/Row.js');
 const Col = require('react-bootstrap/lib/Col.js');
+const Loader = require('../components/core/Loader');
 // const SwitchCheckModuleDropdown = require('../components/core/SwitchCheckModuleDropdown');
 
 const api = window.ModuleApi;
@@ -68,6 +69,7 @@ module.exports = (
   <UploadModal />
   <SettingsModal />
   <LoginModal />
+  <Loader progress={50} />
     <Grid fluid>
       <Row>
         <Col style={RootStyles.SideMenu} md={2} sm={2}>
