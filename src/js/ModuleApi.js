@@ -10,11 +10,22 @@ const Dispatcher = require('./dispatchers/Dispatcher.js');
 const React = require('react');
 const ReactBootstrap = require('react-bootstrap');
 
+const CUR_CHECK_KEY = "_currentCheck";
+const CHECKS_KEY = "_checks";
+
 class ModuleApi {
 	constructor() {
         this.React = React;
         this.ReactBootstrap = ReactBootstrap;
         this.modules = {};
+				this.actions = {
+					changeCheck: "CHANGE_CHECK",
+					changeCheckProperty: "CHANGE_CHECK_PROPERTY"
+				};
+				this.events = {
+					changeCheck: "CHANGE_CHECK",
+					changeCheckProperty: "CHANGE_CHECK_PROPERTY"
+				}
 	}
 
     saveModule(identifier, module) {
@@ -102,6 +113,39 @@ class ModuleApi {
     outputText(path, string, callback) {
         fs.writeFile(path, string, callback);
     }
+
+		debugStore(field, key) {
+			if (field === undefined) {
+				console.dir(CheckStore.storeData);
+			}
+			else if (key === undefined) {
+				console.dir(CheckStore.getModuleDataObject(field));
+			}
+			else {
+				console.dir(CheckStore.getModuleDataObject(field)[key]);
+			}
+		}
+
+		getCurrentCheck() {
+			return CheckStore.getFromCommon("_currentCheck");
+		}
+
+		// Extended API functions
+		changeCurrentCheck(groupIndex, checkIndex) {
+			let checks = CheckStore.getFromCommon(CHECKS_KEY);
+			if (checks[groupIndex] && checks[groupIndex][checkIndex]) {
+				CheckStore.putDataInCommon(CUR_CHECK_KEY, {
+					chapter: checks[groupIndex][checkIndex].chapter,
+					verse: checks[groupIndex][checkIndex].verse,
+					groupIndex: groupIndex,
+					checkIndex: checkIndex
+				});
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
 }
 
 const api = new ModuleApi();

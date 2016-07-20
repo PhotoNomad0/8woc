@@ -1,6 +1,6 @@
 /**
  * @author Logan Lebanoff, Sam Faulkner
- * @description The CheckStore. Handles events and actions. Events and actions are both 
+ * @description The CheckStore. Handles events and actions. Events and actions are both
  * registered by Components in their 'componentWillMount' functions. Actions are used by
  * components to update data within the store. Events are used by components that based on
  * that data if they need to communicate to another component to update that component's view
@@ -14,7 +14,44 @@ const utils = require("../utils.js");
 class CheckStore extends EventEmitter {
   constructor() {
     super();
-    this.storeData = {};
+    this.storeData = {common: {_checks: {groups: [
+      {
+        group: "figs_metaphors",
+        checks: [{
+          chapter: 1,
+          verse: 1,
+          quote: "Lorem ipsum dolor",
+          note: "Ibid possum dolor sum",
+          checked: false
+        }, {
+          chapter: 2,
+          verse: 1,
+          quote: "Nah dude",
+          note: "and heres the note",
+          checked: false
+        }]
+      },
+      { group: "figs_similies",
+    checks: [{
+      chapter: 1,
+      verse: 1,
+      quote: "Lorem ipsum dolor",
+      note: "Ibid possum dolor sum",
+      checked: false
+    }, {
+      chapter: 2,
+      verse: 1,
+      quote: "Nah dude",
+      note: "and heres the note",
+      checked: false
+    }]}
+  ]}},
+    _currentCheck: {
+    chapter: 1,
+    verse: 1,
+    groupIndex: 0,
+    checkIndex: 0
+  }};
     this.actionCallbacks = {};
   }
 
@@ -26,7 +63,7 @@ class CheckStore extends EventEmitter {
    *     key = value;
    *   }
    * }
-   * @param {string} field - The main field that the key and value will be saved under in 
+   * @param {string} field - The main field that the key and value will be saved under in
    * the CheckStore's object
    * @param {string} key - The key that the value will be 'saved' in the field's object
    * @param {anything} value - thing that is assigned to the key
@@ -80,7 +117,7 @@ class CheckStore extends EventEmitter {
     if (this.storeData['common']) {
       return this.storeData.common[key];
     }
-  
+
     return null;
   }
 
@@ -158,7 +195,7 @@ class CheckStore extends EventEmitter {
    * @description - Registers an action that can be used to change data within CheckStore
    * @param {string} type - An action type that is used to distinguish actions
    * @param {function} callback - a callback to be fired when the action is received from the
-   * dispatcher. Callback is called with the object from the CheckStore's data denoted by the 
+   * dispatcher. Callback is called with the object from the CheckStore's data denoted by the
    * action's 'field' attribute. See register action
    */
   registerAction(type, callback) {
