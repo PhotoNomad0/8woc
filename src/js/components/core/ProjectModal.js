@@ -166,9 +166,9 @@ const ProjectModal = React.createClass({
     var allModules = [];
     if (modalBody == "Check") {
       try {
-        var file = fs.readdirSync(window.__base + 'src/js/components/modules');
+        var file = fs.readdirSync(window.__base + '/modules');
         for (var element of file) {
-          if (this.isModule((window.__base + 'src/js/components/modules/' + element), element)) {
+          if (this.isModule((window.__base + '/modules/' + element), element)) {
             fileModules.push(element);
           }
         }
@@ -237,10 +237,11 @@ const ProjectModal = React.createClass({
             //checks which modules user selects, removes if selects twice
           },
           render: function() {
+            var i = 0;
             var checkButtonComponents = this.props.checks.map((checks) => {
               return (
                 <div>
-                <Checkbox id={checks} key={checks}>
+                <Checkbox id={checks} key={i++}>
                 {this.props.beautifyString(checks)}
                 </Checkbox>
                 </div>

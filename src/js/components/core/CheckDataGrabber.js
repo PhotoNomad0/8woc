@@ -45,15 +45,17 @@ var CheckDataGrabber = {
   onComplete: function(err, data) {
     if (data) {
       Report.saveChecks(data, currentCheckName);
-      this.saveNextModule();
+    }
+      
       if (gotFetch.length == 0) {
         //CoreStore.sendViews(views);
         //var View = require(path + '/View');
         //this.saveCheckStoreToDisk();
         CoreActions.sendProgressForKey(0);
       }
-    } else {
-      return;
+      else {
+      CoreActions.sendProgressForKey(0);
+        return;
     }
   },
   Progress: function(data) {

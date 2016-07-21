@@ -78,6 +78,7 @@ module.exports = (
   <SettingsModal />
   <LoginModal />
   <Loader />
+  <ProjectModal />
     <Grid fluid>
       <Row>
         <Col style={RootStyles.ScrollableSection} md={2} sm={2}>
@@ -87,7 +88,6 @@ module.exports = (
       <Row>
         <Col style={RootStyles.CheckSection} xs={10} md={10} lg={10} xsOffset={2} mdOffset={2}>
           <SwitchCheckModuleDropdown />
-          <ModuleWrapper />
           <NextButton />
         </Col>
       </Row>
