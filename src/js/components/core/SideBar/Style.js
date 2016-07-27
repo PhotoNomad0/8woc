@@ -28,12 +28,12 @@ var style = {
   },
 
   glyphicon: {
-    fontSize: "25px",
+    fontSize: "30px",
     color: "white",
   },
 
   glyphiconHover: {
-    fontSize: "29px",
+    fontSize: "35px",
     color: "#a4c639",
   },
 

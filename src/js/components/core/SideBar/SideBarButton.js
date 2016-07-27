@@ -3,7 +3,7 @@ const api = window.ModuleApi;
 const React = api.React;
 const CoreActions = require('../../../actions/CoreActions.js');
 const RB = api.ReactBootstrap;
-const {Glyphicon} = RB;
+const {Glyphicon, OverlayTrigger, Tooltip} = RB;
 const style = require("./Style");
 
 class SideBarButton extends React.Component{
@@ -27,12 +27,17 @@ class SideBarButton extends React.Component{
         const GlyphStyle = this.state.hover ? style.glyphiconHover : style.glyphicon;
         return(
           <div>
-            <li style={linkStyle} onClick={this.props.handleButtonClick} onMouseEnter={this.mouseEnter.bind(this)} onMouseLeave={this.mouseLeave.bind(this)}>
-              <Glyphicon glyph={this.props.glyphicon} style={GlyphStyle}/><br/>{this.props.value}</li>
+
+            <OverlayTrigger placement="right" overlay={ <Tooltip id="tooltip">{this.props.tooltip}</Tooltip>}>
+              <li style={linkStyle} onClick={this.props.handleButtonClick} onMouseEnter={this.mouseEnter.bind(this)} onMouseLeave={this.mouseLeave.bind(this)}>
+                <Glyphicon glyph={this.props.glyphicon} style={GlyphStyle}/><br/></li>
+            </OverlayTrigger>
+
           </div>
         );
       }
 
 }
+
 
 module.exports = SideBarButton;
