@@ -76,14 +76,15 @@ const ProjectModal = React.createClass({
         this.setState({
           showModal: false
         });
+        CoreActions.showCreateProject("");
       }
     });
-    CoreActions.showCreateProject("");
+
   },
 
   getProjectStatus: function(callback) {
     var projectStatus = CoreStore.getShowProjectModal();
-    if (projectStatus != "Create" && projectStatus != "Check") {
+    if (projectStatus != "Languages") {
       	var Alert = {
       		title: "You are currently making a project",
       		content: "Are you sure you want to cancel?",
@@ -97,8 +98,9 @@ const ProjectModal = React.createClass({
       		callback(false);
       	}
       });
+    } else{
+      callback(true);
     }
-    callback(true);
   },
   makePathForChecks: function(check) {
     if (!check || check == '') {
