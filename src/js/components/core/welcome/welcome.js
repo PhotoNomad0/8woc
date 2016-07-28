@@ -5,6 +5,7 @@ const {Glyphicon, Button} = RB;
 
 const Login = require('./WelcomeLogin');
 const CreateProject = require('./WelcomeCreateProject');
+const UploadTS = require('./UploadTS');
 
 const NUM_OF_SLIDES = 3;
 
@@ -98,6 +99,7 @@ class Welcome extends React.Component{
             <h1>Load your first project</h1>
             <p>You can load in your first project from Door43 or from your hard drive.</p>
             <div style={{width: '50%', borderStyle: 'dashed', margin: 'auto', minHeight: '100px'}}>
+            <UploadTS />
             </div>
           </div>
         )
