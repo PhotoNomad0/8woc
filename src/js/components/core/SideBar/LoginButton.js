@@ -42,20 +42,20 @@ class LoginButton extends React.Component{
   }
 
       render(){
-        const linkStyle = this.state.hover ? style.hover : style.li;
-        const GlyphStyle = this.state.hover ? style.glyphiconHover : style.glyphicon;
+        const linkStyle = this.props.enabled ? (this.state.hover ? style.hover : style.li) : style.disabled;
+        const GlyphStyle = this.props.enabled ? (this.state.hover ? style.glyphiconHover : style.glyphicon) : style.disabledGlyph;
 
         let userName = "Sign in";
         let profilePicture = <Glyphicon glyph="user" style={GlyphStyle}/>
         if(this.state.online === true){
-        let user = CoreStore.getLoggedInUser();
-        userName = user.username;
-        let temp = user.avatar_url;
-        profilePicture = <Image style={{height: '45px', width:'45px'}} src={temp} circle />
+          let user = CoreStore.getLoggedInUser();
+          userName = user.username;
+          let temp = user.avatar_url;
+          profilePicture = <Image style={{height: '45px', width:'45px'}} src={temp} circle />
         }
         return(
           <div>
-              <li style={linkStyle} onClick={this.handleClick.bind(this)} onMouseEnter={this.mouseEnter.bind(this)} onMouseLeave={this.mouseLeave.bind(this)}>
+              <li style={linkStyle} onClick={this.props.enabled ? this.handleClick.bind(this) : () => {}} onMouseEnter={this.mouseEnter.bind(this)} onMouseLeave={this.mouseLeave.bind(this)}>
                   {profilePicture}<br/>{userName}</li>
           </div>
         );

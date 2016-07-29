@@ -24,7 +24,7 @@ var style = {
     paddingTop: "20px",
     paddingBottom: "20px",
     color: "white",
-    userSelect: "none",
+    WebkitUserSelect: "none"
   },
 
   glyphicon: {
@@ -44,7 +44,7 @@ var style = {
     display: "block",
     textAlign: "center",
     borderBottom: "2px solid #1E1D1F",
-    userSelect: "none",
+    WebkitUserSelect: "none",
     paddingTop: "18px",
     paddingBottom: "18px"
   },
@@ -68,7 +68,20 @@ var style = {
     color: "#00B233",
     fontSize: "25px",
   },
-
+  disabled: {
+    display: "block",
+    color: "#a6a6a6",
+    textAlign: "center",
+    borderBottom: "2px solid #1E1D1F",
+    paddingTop: "20px",
+    paddingBottom: "20px",
+    WebkitUserSelect: "none",
+    cursor: "default"
+  },
+  disabledGlyph: {
+    fontSize: "25px",
+    color: "#a6a6a6"
+  }
 };
 
 module.exports = style;

@@ -89,13 +89,13 @@ class SideNavBar extends React.Component{
         <div style={style.container}>
           <ul style={style.ul}>
             <img src="images/TC_Icon_logo.png" style={style.logo}/>
-            <LoginButton />
-            <SideBarButton handleButtonClick={this.handleCreateProject.bind(this)} glyphicon={"file"} value={"New"} />
-            <SideBarButton handleButtonClick={this.handleOpenProject.bind(this)} glyphicon={"folder-open"} value={"Open"} />
-            <SideBarButton handleButtonClick={this.handleSyncProject.bind(this)} glyphicon={"cloud-upload"} value={"Sync"} />
-            <SideBarButton handleButtonClick={this.handleReport.bind(this)} glyphicon={"list-alt"} value={"Reports"} />
-            <SideBarButton handleButtonClick={this.handleChangeCheckCategory.bind(this)} glyphicon={"check"} value={"Apps"} />
-            <SideBarButton handleButtonClick={this.handleSettings.bind(this)} glyphicon={"cog"} value={"Settings"} />
+            <LoginButton enabled={this.props.enabled !== false} />
+            <SideBarButton enabled={this.props.enabled !== false} handleButtonClick={this.handleCreateProject.bind(this)} glyphicon={"file"} value={"New"} />
+            <SideBarButton enabled={this.props.enabled !== false} handleButtonClick={this.handleOpenProject.bind(this)} glyphicon={"folder-open"} value={"Open"} />
+            <SideBarButton enabled={this.props.enabled !== false} handleButtonClick={this.handleSyncProject.bind(this)} glyphicon={"cloud-upload"} value={"Sync"} />
+            <SideBarButton enabled={this.props.enabled !== false} handleButtonClick={this.handleReport.bind(this)} glyphicon={"list-alt"} value={"Reports"} />
+            <SideBarButton enabled={this.props.enabled !== false} handleButtonClick={this.handleChangeCheckCategory.bind(this)} glyphicon={"check"} value={"Apps"} />
+            <SideBarButton enabled={this.props.enabled !== false} handleButtonClick={this.handleSettings.bind(this)} glyphicon={"cog"} value={"Settings"} />
             {/*<OnlineStatus />*/}
           </ul>
         </div>
