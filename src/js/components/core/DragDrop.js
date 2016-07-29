@@ -13,7 +13,7 @@ const style = {
                   },
                   text: {
                     borderRadius: '10px',
-                    marginTop: '10px',
+                    marginTop: '20px',
                     backgroundColor: '#ffffff',
                     color: '#34495e',
                     fontSize: '30px',
